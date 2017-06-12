@@ -1,0 +1,19 @@
+ <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Agile Soft Systems</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a routerLink="/">Home</a></li>
+      <li><a routerLink="/manage">Manage</a></li>
+      <li><a routerLink="/request" >Request</a></li>
+      <li><a routerLink="/approve" >Approve</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a>{{ authService.getEmail() }}</a></li>
+      <li *ngIf="!authService.isAuthenticated()"><a routerLink="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li *ngIf="!authService.isAuthenticated()"><a routerLink="/signin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <li *ngIf="authService.isAuthenticated()"><a href=# (click)="onSignOut()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav>
