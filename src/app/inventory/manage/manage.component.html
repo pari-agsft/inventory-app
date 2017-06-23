@@ -1,3 +1,122 @@
-<p>
-  manage works!
-</p>
+<div class="container">
+  <div class="row">
+    <td><button type="button" class="btn btn-primary" (click)="addItemModal.show()">Add</button></td>
+    <table class="table table-stripped table-hover">
+      <thead>
+        <th>Key</th>
+        <th>Name</th>
+        <th>Serial Number</th>
+        <th>Category</th>
+        <th>Cost</th>
+        <th>Currency</th>
+        <th>Available Items</th>
+        <th>Purchase Date</th>
+        <th>Comments</th>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let item of itemList">
+          <td>{{ item.$key }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.serialNum }}</td>
+          <td>{{ item.category }}</td>
+          <td>{{ item.cost }}</td>
+          <td>{{ item.currency }}</td>
+          <td>{{ item.totalItems }}</td>
+          <td>{{ item.totalItems }}</td>
+          <td>{{ item.purchaseDate }}</td>
+          <td>{{ item.comments }}</td>
+          <td><button type="button" class="btn btn-success" (click)="onSelectByItemKey(item.$key)">Edit</button></td>
+          <td><button type="button" class="btn btn-danger" (click)="onDeleteByItemKey(item.$key)">Delete</button></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div bsModal #addItemModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+  aria-hidden="true">
+  <div class="modal-content">
+    <form (ngSubmit)="onAddItem(addForm)" #addForm="ngForm">
+      <div class="modal-header">
+        <button (click)="addItemModal.hide()" aria-label="Close" class="close" type="button">
+                        <span aria-hidden="true">×</span>
+                    </button>
+        <h5 class="modal-title text-xs-center" id="myModalLabel18">Add New Item</h5>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <input type="text" placeholder="serial number" ngModel class="form-control" name="serialNum" id="serialNum">
+        </div>
+        <div class="form-group">
+          <input type="text" placeholder="item name" ngModel class="form-control" name="itemName" id="itemName">
+        </div>
+        <div class="form-group">
+          <input type="number" placeholder="total items" ngModel class="form-control" name="totalItems" id="totalItems">
+        </div>
+        <div class="form-group">
+          <input type="text" placeholder="category" ngModel class="form-control" name="category" id="category">
+        </div>
+        <div class="form-group">
+          <input type="number" placeholder="cost" ngModel class="form-control" name="cost" id="cost">
+        </div>
+        <div class="form-group">
+          <input type="text" placeholder="currency" ngModel class="form-control" name="currency" id="currency">
+        </div>
+        <div class="form-group">
+          <input type="date" placeholder="purchase date" ngModel class="form-control" name="purchaseDate" id="purchaseDate">
+        </div>
+        <div class="form-group">
+          <input type="text area" placeholder="comments" ngModel class="form-control" name="comments" id="comments">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Add</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div bsModal #editItemModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+  aria-hidden="true">
+  <div class="modal-content">
+    <form (ngSubmit)="onSaveItem(editForm)" #editForm="ngForm">
+    <div class="modal-header">
+      <button (click)="editItemModal.hide()" aria-label="Close" class="close" type="button">
+                        <span aria-hidden="true">×</span>
+                    </button>
+      <h5 class="modal-title text-xs-center" id="myModalLabel18">Edit Item</h5>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+          <input type="text" placeholder="serial number" ngModel class="form-control" name="serialNum" id="serialNum" [value]="selectedItem?.serialNum">
+        </div>
+        <div class="form-group">
+          <input type="text" placeholder="item name" ngModel class="form-control" name="itemName" id="itemName" [value]="selectedItem?.name">
+        </div>
+        <div class="form-group">
+          <input type="number" placeholder="total items" ngModel class="form-control" name="totalItems" id="totalItems" [value]="selectedItem?.totalItems">
+        </div>
+        <div class="form-group">
+          <input type="text" placeholder="category" ngModel class="form-control" name="category" id="category" [value]="selectedItem?.category">
+        </div>
+        <div class="form-group">
+          <input type="number" placeholder="cost" ngModel class="form-control" name="cost" id="cost" [value]="selectedItem?.cost">
+        </div>
+        <div class="form-group">
+          <input type="text" placeholder="currency" ngModel class="form-control" name="currency" id="currency" [value]="selectedItem?.currency">
+        </div>
+        <div class="form-group">
+          <input type="date" placeholder="purchase date" ngModel class="form-control" name="purchaseDate" id="purchaseDate" [value]="selectedItem?.purchaseDate">
+        </div>
+        <div class="form-group">
+          <input type="text area" placeholder="comments" ngModel class="form-control" name="comments" id="comments" [value]="selectedItem?.comments">
+        </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+  </div>
+</div>

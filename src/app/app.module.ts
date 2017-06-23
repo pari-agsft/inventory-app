@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { Routes,RouterModule } from '@angular/router';
 
+import { ModalModule } from 'ng2-bootstrap';
+
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -19,6 +21,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 
 import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/auth-guard.service';
+import { InventoryService } from './inventory/inventory.service';
 
 
 export const firebaseConfig = {
@@ -55,9 +58,10 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+    ModalModule.forRoot()
   ],
-  providers: [AuthService,AngularFireAuth,AuthGuard],
+  providers: [AuthService,AngularFireAuth,AuthGuard,AngularFireDatabase,InventoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
