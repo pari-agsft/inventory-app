@@ -52,17 +52,19 @@ export class ManageComponent implements OnInit {
     const totalItems = form.value.totalItems;
     const currency = form.value.currency;
     
+
     let editedItem = new Item(serialNum,name,cost,totalItems,purchaseDate,category,currency,comments);
     editedItem.serialNum = editedItem.serialNum.length === 0 ? this.selectedItem.serialNum : editedItem.serialNum ;
     editedItem.name = editedItem.name.length === 0 ? this.selectedItem.name : editedItem.name ;
-    editedItem.totalItems = editedItem.totalItems === 0 ? this.selectedItem.totalItems : editedItem.totalItems ;
+    editedItem.totalItems = editedItem.totalItems.toString.length === 0 ? this.selectedItem.totalItems : editedItem.totalItems ;
     editedItem.category = editedItem.category.length === 0 ? this.selectedItem.category : editedItem.category ;
-    editedItem.cost = editedItem.cost === 0 ? this.selectedItem.cost : editedItem.cost ;
+    editedItem.cost = editedItem.cost.toString.length === 0 ? this.selectedItem.cost : editedItem.cost ;
     editedItem.currency = editedItem.currency.length === 0 ? this.selectedItem.currency : editedItem.currency ;
     editedItem.purchaseDate = !editedItem.purchaseDate ? this.selectedItem.purchaseDate : editedItem.purchaseDate ;
     editedItem.comments = editedItem.comments.length === 0 ? this.selectedItem.comments : editedItem.comments ;
     
     this.inventoryService.editItem(this.selectedItem.$key,editedItem);
+    this.editItemModal.hide();
   }
 
   onDeleteByItemKey(key: string) {
