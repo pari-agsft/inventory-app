@@ -1,3 +1,24 @@
-<p>
-  approve works!
-</p>
+<div class="container">
+<div class="row" >
+  <table class="table table-stripped table-hover">
+    <thead>
+        <th>Key</th>
+        <th>Name</th>
+        <th>Available Items</th>
+        <th>Requested Quantity</th>
+        <th>Requested By</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let req of (requests$ | async)">
+        <td>{{ req.item.$key }}</td>
+        <td>{{ req.item.name }} </td>
+        <td>{{ req.item.totalItems }}</td>
+        <td>{{ req.request.quantity }} </td>
+        <td>{{ req.request.email }} </td>
+        <td><button type="button" class="btn btn-primary" (click)="inventoryService.approveItem(req)">Approve</button>
+        <td><button type="button" class="btn btn-danger" (click)="inventoryService.declineItem(req.request.$key)">Decline</button>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>

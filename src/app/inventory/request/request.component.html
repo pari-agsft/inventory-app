@@ -1,3 +1,22 @@
-<p>
-  request works!
-</p>
+<div class="container">
+<div class="row" >
+  <table class="table table-stripped table-hover">
+    <thead>
+        <th>Key</th>
+        <th>Name</th>
+        <th>Serial Number</th>
+        <th>Available Items</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of itemList; let i=index">
+        <td>{{ item.$key }}</td>
+        <td>{{ item.name }} </td>
+        <td>{{ item.serialNum }}</td>
+        <td>{{ item.totalItems }}</td>
+        <td><button type="button" class="btn btn-warning" (click)="onRequestItem(item.$key)">Request</button>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+

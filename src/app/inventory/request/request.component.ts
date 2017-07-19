@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Item, Request } from '../inventory.model';
+import { InventoryService } from '../inventory.service';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-request',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RequestComponent implements OnInit {
 
-  constructor() { }
-
+  itemList: Item[] = [];
+    constructor(private inventoryService: InventoryService, private authService: AuthService) { 
+  inventoryService.getAllItems().subscribe(
+      data => this.itemList = data
+    )
+  }
   ngOnInit() {
+  }
+
+  onRequestItem($key: string) {
+    let request = new Request(this.authService.getEmail(),$key,1,'new');
+    this.inventoryService.requestItem(request);
   }
 
 }

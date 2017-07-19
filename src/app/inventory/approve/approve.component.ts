@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
+import { InventoryService } from '../inventory.service';
+
+import { Item, Request, RequestItem } from '../inventory.model';
+
+import {Observable} from 'rxjs/Rx';
+
 @Component({
   selector: 'app-approve',
   templateUrl: './approve.component.html',
@@ -7,7 +13,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ApproveComponent implements OnInit {
 
-  constructor() { }
+  requests$: Observable<RequestItem[]> ;
+  
+  constructor(private inventoryService: InventoryService) { 
+  this.requests$ = inventoryService.getItemsByStatus('new');
+  }
 
   ngOnInit() {
   }
