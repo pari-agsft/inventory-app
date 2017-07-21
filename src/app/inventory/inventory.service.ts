@@ -55,7 +55,7 @@ export class InventoryService {
     approveItem(req: RequestItem) {
         this.db.object('requests/' + req.request.$key + '/status').set('approved').then
         this.db.object('items/' + req.item.$key + '/totalItems').$ref
-        .transaction(quantity => { return quantity-1 } );
+        .transaction(quantity => { return quantity - req.request.quantity } );
     }
 
     declineItem($key: string) {
