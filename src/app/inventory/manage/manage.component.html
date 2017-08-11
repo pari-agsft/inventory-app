@@ -36,6 +36,7 @@
 
 <div bsModal #addItemModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
   aria-hidden="true">
+<div class="modal-dialog modal-md">
   <div class="modal-content">
     <form (ngSubmit)="onAddItem(addForm)" #addForm="ngForm">
       <div class="modal-header">
@@ -75,10 +76,12 @@
       </div>
     </form>
   </div>
+  </div>
 </div>
 
 <div bsModal #editItemModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
   aria-hidden="true">
+<div class="modal-dialog modal-md">
   <div class="modal-content">
     <form (ngSubmit)="onSaveItem(editForm)" #editForm="ngForm">
     <div class="modal-header">
@@ -117,5 +120,6 @@
       <button type="submit" class="btn btn-primary">Submit</button>
     </div>
   </form>
+ </div>
   </div>
 </div>
