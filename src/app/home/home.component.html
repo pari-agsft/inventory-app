@@ -1,3 +1,265 @@
-<p>
-  home works!
-</p>
+<div class="container">
+  <div class="row">
+<!-- left column -->
+    <div class="col-md-4">
+<!--Image Uploader-->
+        <div class="profile well">
+         <div class="text-center">
+          <img [src]="imageUrl" id="imagePreview" alt="Preview Image"class="avatar img-circle" alt="Profile">
+          <p>
+          <input type="file" name="imageUpload" id="imageUpload" class="hide" (change)="uploadProfilePic($event)"/>
+          <label for="imageUpload"><span class="glyphicon glyphicon-camera color5"></span></label>
+          </p>
+           <table class="table borderless">
+             <tr>
+              <th class="property"><span class="glyphicon glyphicon-user color4"></span>  Name</th>
+              <td>{{textName}}</td>
+            </tr>
+            <tr>
+              <th class="property"><span class="glyphicon glyphicon-education color5"></span> Designation</th>
+              <td>{{textDesignation}}</td>
+            </tr>
+            <tr>
+              <th class="property"><i class="glyphicon glyphicon-bullhorn color7" aria-hidden="true"></i> Department</th>
+              <td>{{textDepartment}}</td>
+           </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+<!--End of Left Coloumn-->
+  
+    <form class="navbar-form" role="search">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search" name="search">
+      </div>
+    </form> 
+<!--Right column -->
+    <div class="col-md-7 col-sm-6 col-xs-12">
+        <div class="info well">
+      <table class="table borderless">
+        <tr>
+          <td class="property"><span class="glyphicon glyphicon-envelope color3"></span>  Email</td>
+          <td>{{textEmail}}</td>
+        </tr>
+
+        <tr>
+          <td class="property"><i class="glyphicon glyphicon-phone color1" aria-hidden="true"></i> Skype</td>
+          <td>{{textSkype}}</td>
+        </tr>
+
+        <tr>
+          <td class="property"><span class="glyphicon glyphicon-earphone color8"></span> Mobile</td>
+          <td>{{textMobile}}</td>
+        </tr>
+
+        <tr>
+          <td class="property"><i class="glyphicon glyphicon-paperclip color2" aria-hidden="true"></i> LinkedIn</td>
+          <td>{{textLinked}}</td>
+      </tr>
+      
+        <tr>
+          <td class="property"><span class="glyphicon glyphicon-map-marker color5"></span>Address</td>
+          <td>{{textAddress}}</td>
+       </tr>
+
+        <tr>
+          <td class="property"><span class="glyphicon glyphicon-calendar color6"></span> Date of Joining</td>
+          <td>{{textDOJ}}</td>
+       </tr>
+     
+        <tr>
+          <td class="property"><span class="glyphicon glyphicon-user color4"></span> Manager</td>
+          <td>{{textManager}}</td>
+        </tr>
+
+        <tr>
+           <td></td>
+           <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#infomodel">Edit Profile</button></td>
+        </tr>
+    </table>
+  </div>
+  </div>
+<!--Edit model-->
+<div class="container fluid">
+  <div class="modal fade" id="infomodel" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+        <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+          <h4 class="modal-title">Edit Profile</h4>
+        </div>
+ <!--from start-->
+        <div class="modal-body">
+        <form (ngSubmit)="onSubmit()" #home="ngForm">
+        <div
+          id="user-data"
+          ngModelGroup="userData"
+          #userData="ngModelGroup">
+
+           <div class="form-group">
+            <input
+              type="text"
+              id="username"
+              class="form-control"
+              ngModel
+              name="username"
+              placeholder="Name"
+              [(ngModel)]="textName"
+              required
+              username
+              #username="ngModel">
+            <span class="help-block" *ngIf="!username.valid && username.touched"></span>
+          </div>
+
+          <div class="form-group">
+            <input
+              type="email"
+              id="email"
+              class="form-control"
+              ngModel
+              name="email"
+              placeholder="Email"
+              [(ngModel)]="textEmail"
+              required
+              email
+              #email="ngModel">
+            <span class="help-block" *ngIf="!email.valid && email.touched"></span>
+          </div>
+
+          <div class="form-group">
+            <input
+              type="text"
+              id="skype"
+              class="form-control"
+              ngModel
+              name="skype"
+              placeholder="Skype"
+              [(ngModel)]="textSkype"
+              required
+              skype
+              #skype="ngModel">
+            <span class="help-block" *ngIf="!skype.valid && skype.touched"></span>
+          </div>
+
+          <div class="form-group">
+            <input
+              type="text"
+              id="mobile"
+              class="form-control"
+              ngModel
+              name="mobile"
+              placeholder="Mobile"
+              [(ngModel)]="textMobile"
+              required
+              mobile
+              #mobile="ngModel"
+              maxlength="10">
+            <span class="help-block" *ngIf="!mobile.valid && mobile.touched"></span>
+          </div>
+
+           <div class="form-group">
+            <input
+              type="text"
+              id="linkedin"
+              class="form-control"
+              ngModel
+              name="linkedin"
+              placeholder="Linkedin Id"
+              [(ngModel)]="textLinked"
+              required
+              linkedin
+              #linkedin="ngModel">
+            <span class="help-block" *ngIf="!linkedin.valid && linkedin.touched"></span>
+          </div>
+
+          <div class="form-group">
+            <select
+              type="text"
+              id="department"
+              class="form-control"
+              ngModel
+              name="department"
+              placeholder="Department"
+              [(ngModel)]="textDepartment"
+              required
+              department
+              #department="ngModel">
+                <option value="IT" selected>IT</option>
+                <option value="HR">HR</option>
+                <option value="Technical Support">Technical Support</option>
+                <option value="System Admin">System Admin</option>
+            </select>
+            <span class="help-block" *ngIf="!department.valid && department.touched"></span>
+          </div>
+
+          <div class="form-group">
+            <input
+              type="text"
+              id="address"
+              class="form-control"
+              ngModel
+              name="address"
+              placeholder="Address"
+              [(ngModel)]="textAddress"
+              required
+              address
+              #address="ngModel">
+            <span class="help-block" *ngIf="!address.valid && address.touched"></span>
+          </div>
+
+           <div class="form-group">
+            <input
+              type="date"
+              id="doj"
+              class="form-control"
+              ngModel
+              name="doj"
+              placeholder="Date of Joining"
+              [(ngModel)]="textDOJ"
+              required
+              doj
+              #doj="ngModel">
+            <span class="help-block" *ngIf="!doj.valid && doj.touched"></span>
+          </div>
+
+          <div class="form-group">
+            <input
+              type="text"
+              id="designation"
+              class="form-control"
+              ngModel
+              name="designation"
+              placeholder="Designation"
+              [(ngModel)]="textDesignation"
+              required
+              designation
+              #designation="ngModel">
+            <span class="help-block" *ngIf="!designation.valid && designation.touched"></span>
+          </div>
+          
+          <div class="form-group">
+            <input
+              type="text"
+              id="manager"
+              class="form-control"
+              ngModel
+              name="manager"
+              placeholder="Manager"
+               [(ngModel)]="textManager"
+              required
+              manager
+              #manager="ngModel">
+            <span class="help-block" *ngIf="!manager.valid && manager.touched"></span>
+          </div>
+        </div>
+      </form>
+    </div>
+<!--form End-->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" [disabled]="!home.valid">Update Profile</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

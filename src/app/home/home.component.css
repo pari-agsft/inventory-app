@@ -1,0 +1,81 @@
+/*Container*/
+.container {
+  margin-top: 30px;
+}
+/*well*/
+.well{
+  height: 400px
+}
+.profile{
+  margin-top:50px
+}
+.info{
+  margin-top:0px
+}
+/*Table border*/
+.borderless td, .borderless th {
+    border: none;
+}
+/*Validation Color*/
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+/*Table Cell property*/
+.property{
+  font-weight: bold
+}
+/*Image Upload*/
+.avatar{
+  margin-top:50px;
+  height: 150px
+}
+/*Heading*/
+.heading{
+  text-align: center
+}
+/*Navgation form*/
+.navbar-form{
+  padding-left: 840px
+}
+
+/*Btn success*/
+.btn-success{
+text-align:center;
+float:right
+/*Glyphicons Color*/
+}
+.color1{
+  color:#12A5F4
+}
+.color2{
+  color:#0077B5
+}
+.color3{
+color:#FFA500
+}
+.color4{
+  color: #12A5F4
+}
+.color5{
+  color: #28B893
+}
+.color6{
+  color: #4F9AD8
+}
+.color7{
+  color: #C91533
+}
+.color8{
+  color: #71D37F
+}
+.glyphicon-camera{
+  font-size: 30px;
+  top: -25px;
+  left: 40px;
+  cursor:pointer
+}
+.hide{display:none;}
+.navbar-form{
+  margin-left:20px
+}
+

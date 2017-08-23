@@ -5,7 +5,6 @@ import { HttpModule } from '@angular/http';
 import { Routes,RouterModule } from '@angular/router';
 
 import { ModalModule } from 'ng2-bootstrap';
-
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';

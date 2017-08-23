@@ -82,6 +82,10 @@ constructor(private router: Router, private af: AngularFireAuth) {}
     return localStorage.getItem('email');
   }
 
+  getUID(){
+    return localStorage.getItem('uid');
+  }
+
   getToken() {
     return localStorage.getItem('token')
   }
