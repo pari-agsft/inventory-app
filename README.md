@@ -1,3 +1,7 @@
+#Blog Link
+
+https://agsft.com/blog/firebase-using-angular4-part-7/
+
 # InventoryApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
