@@ -35,6 +35,10 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
+  onSubmit() {
+    alert("Not Implemented");
+  }
+
   uploadProfilePic($event) {
     var file:File = $event.target.files[0];
     this.inventoryService.uploadProfilePic(file)

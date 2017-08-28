@@ -13,15 +13,15 @@
            <table class="table borderless">
              <tr>
               <th class="property"><span class="glyphicon glyphicon-user color4"></span>  Name</th>
-              <td>{{textName}}</td>
+              <td>Pariksheet Barapatre</td>
             </tr>
             <tr>
               <th class="property"><span class="glyphicon glyphicon-education color5"></span> Designation</th>
-              <td>{{textDesignation}}</td>
+              <td>Senior Data Engineer</td>
             </tr>
             <tr>
               <th class="property"><i class="glyphicon glyphicon-bullhorn color7" aria-hidden="true"></i> Department</th>
-              <td>{{textDepartment}}</td>
+              <td>Data Analytics</td>
            </tr>
             </table>
           </div>
@@ -40,37 +40,37 @@
       <table class="table borderless">
         <tr>
           <td class="property"><span class="glyphicon glyphicon-envelope color3"></span>  Email</td>
-          <td>{{textEmail}}</td>
+          <td></td>
         </tr>
 
         <tr>
           <td class="property"><i class="glyphicon glyphicon-phone color1" aria-hidden="true"></i> Skype</td>
-          <td>{{textSkype}}</td>
+          <td></td>
         </tr>
 
         <tr>
           <td class="property"><span class="glyphicon glyphicon-earphone color8"></span> Mobile</td>
-          <td>{{textMobile}}</td>
+          <td></td>
         </tr>
 
         <tr>
           <td class="property"><i class="glyphicon glyphicon-paperclip color2" aria-hidden="true"></i> LinkedIn</td>
-          <td>{{textLinked}}</td>
+          <td></td>
       </tr>
       
         <tr>
           <td class="property"><span class="glyphicon glyphicon-map-marker color5"></span>Address</td>
-          <td>{{textAddress}}</td>
+          <td></td>
        </tr>
 
         <tr>
           <td class="property"><span class="glyphicon glyphicon-calendar color6"></span> Date of Joining</td>
-          <td>{{textDOJ}}</td>
+          <td></td>
        </tr>
      
         <tr>
           <td class="property"><span class="glyphicon glyphicon-user color4"></span> Manager</td>
-          <td>{{textManager}}</td>
+          <td></td>
         </tr>
 
         <tr>
@@ -92,6 +92,7 @@
  <!--from start-->
         <div class="modal-body">
         <form (ngSubmit)="onSubmit()" #home="ngForm">
+<!--comment start
         <div
           id="user-data"
           ngModelGroup="userData"
@@ -253,6 +254,7 @@
             <span class="help-block" *ngIf="!manager.valid && manager.touched"></span>
           </div>
         </div>
+        -->
       </form>
     </div>
 <!--form End-->
