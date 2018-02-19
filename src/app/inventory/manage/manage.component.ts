@@ -1,6 +1,6 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ModalDirective } from 'ng2-bootstrap/modal';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 import { InventoryService } from '../inventory.service';
 import { Item } from '../inventory.model';

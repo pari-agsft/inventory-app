@@ -13,11 +13,12 @@ import {Observable} from 'rxjs/Rx';
 })
 export class ApproveComponent implements OnInit {
 
-  requests$: Observable<RequestItem[]> ;
+  //FIXME: fix approve component
+  // requests$: Observable<RequestItem[]> ;
   
-  constructor(private inventoryService: InventoryService) { 
-  this.requests$ = inventoryService.getItemsByStatus('new');
-  }
+  // constructor(private inventoryService: InventoryService) { 
+  // this.requests$ = inventoryService.getItemsByStatus('new');
+  // }
 
   ngOnInit() {
   }
