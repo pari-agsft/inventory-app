@@ -40,23 +40,17 @@ export class InventoryService {
         this.requests.push(request);
     }
 
+    getItemsByStatus(status: string) {
+        const queryList$ = this.db.list('/requests');
+        return queryList$.map(
+            requestList => requestList.map(request => this.db.object('items/' + request.itemId)
+                .map((item) => {
+                    return new RequestItem(request as Request, item as Item)
+                }
+                )))
+            .flatMap(fobjs => Observable.combineLatest(fobjs));
+    }
 
-      //FIXME: Need to fix code for Angular5
-//    getItemsByStatus(status: string) {
-//        const queryList$ = this.db.list('/requests', {
-//            query: {
-//                orderByChild: 'status',
-//                equalTo: status
-//            }
-//        })
-//        return queryList$.map(
-//            requestList => requestList.map(request => this.db.object('items/' + request.itemId)
-//                .map((item) => {
-//                    return new RequestItem(request as Request, item as Item)
-//                }
-//                )))
-//            .flatMap(fobjs => Observable.combineLatest(fobjs));
-//    }
 
     approveItem(req: RequestItem) {
         this.db.object('requests/' + req.request.$key + '/status').set('approved').then
