@@ -6,7 +6,7 @@ import { Routes,RouterModule } from '@angular/router';
 
 import { ModalModule } from 'ngx-bootstrap';
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabase } from 'angularfire2/database-deprecated';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 import { AppComponent } from './app.component';
