@@ -2,7 +2,7 @@
 
 https://agsft.com/blog/firebase-using-angular4-part-7/
 
-# InventoryApp
+# InventoryApp (port the app to angular5 using deprecated modules)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
 
