@@ -13,18 +13,23 @@ export class InventoryService {
     items: AngularFireList<Item>;
     requests: AngularFireList<Request>;
     constructor(private db: AngularFireDatabase,private authService: AuthService,
-         private firebaseApp: FirebaseApp) {
+        private firebaseApp: FirebaseApp) {
         this.items = this.db.list<Item>('/items');
         this.requests = this.db.list<Request>('/requests');
     }
 
-    getAllItems() {
-        return this.items.valueChanges().map(
-            (data) => data.map(x => x as Item)
-        );
+    getAllItems(): Observable<Item[]> {
+        return this.items.snapshotChanges().map((arr) => {
+          return arr.map((snap) => Object.assign(snap.payload.val(), { $key: snap.key }) );
+        });
     }
 
-    //FIXME: Delete item deletes everything
+    getAllRequests(): Observable<Request[]> {
+        return this.requests.snapshotChanges().map((arr) => {
+          return arr.map((snap) => Object.assign(snap.payload.val(), { $key: snap.key }) );
+        });
+    }
+
     deleteItemByKey($key: string) {
         this.items.remove($key);
     }
@@ -33,7 +38,7 @@ export class InventoryService {
         this.items.push(item);
     }
 
-    //FIXME: Edit item adds a new item with undefined key
+
     editItem(key: string, item: Item) {
         this.db.object('items/' + key).update(item);
     }
@@ -43,23 +48,25 @@ export class InventoryService {
     }
 
     getItemsByStatus(status: string) {
-        const queryList$ = this.db.list<Request>('/requests');
-        return queryList$.valueChanges().map(
+        return this.getAllRequests()
+        .map(requestList => requestList.filter(request => request.status == "new"))
+        .map(
             requestList => requestList.map(request => this.db.object<Item>('items/' + request.itemId)
                 .valueChanges()
                 .map((item) => {
-                    return new RequestItem(request as Request, item as Item)
+                    let newItem: Item = item as Item;
+                    newItem.$key = request.itemId;
+                    return new RequestItem(request, newItem)
                 }
                 )))
             .flatMap(fobjs => Observable.combineLatest(fobjs));
     }
 
-    //FIXME: Transaction not working
     approveItem(req: RequestItem) {
-        this.db.object('requests/' + req.request.$key + '/status').set('approved');
-        // .then
-        // this.db.object('items/' + req.item.$key + '/totalItems').$ref
-        // .transaction(quantity => { return quantity - req.request.quantity } );
+        this.db.object('requests/' + req.request.$key + '/status').set('approved')
+        .then
+        this.db.database.ref('items/' + req.item.$key + '/totalItems')
+        .transaction(quantity => { return quantity - req.request.quantity } );
     }
 
     declineItem($key: string) {
