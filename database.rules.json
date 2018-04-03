@@ -1,0 +1,22 @@
+{
+	"rules": {
+		".read": false,
+		".write": false,
+		"items": {
+			".read": "auth != null", /*Only Authorized users*/
+      ".write": "root.child('roles').child(auth.uid).val() === 'admin'", /*Only Admin users*/
+        "$iId": {
+					"cost": {
+						".validate": "newData.isNumber()"
+				}
+			}
+    },
+    "requests": {
+			".read": "auth != null", /*Only Authorized users*/
+			".indexOn": "status",
+			"$rId": {
+				".write": "(auth != null && !data.exists() && newData.child('status').val() === 'new') || root.child('roles').child(auth.uid).val() === 'admin'" /*Only Admins can update request*/
+			}
+		}
+	}
+}
